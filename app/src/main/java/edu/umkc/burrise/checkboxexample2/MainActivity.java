@@ -18,31 +18,18 @@ public class MainActivity extends ActionBarActivity {
 
         CheckboxManager cbm = CheckboxManager.get(getApplication());
 
-        CheckBox cb = (CheckBox)findViewById(R.id.Box);
+        CheckBox cb = (CheckBox)findViewById(R.id.completedCheckBox);
         cb.setChecked(cbm.isChecked());
     }
 
-    public void onToggleA(View v) {
-        CheckBox cb = (CheckBox) findViewById(R.id.Box);
+    public void onToggle(View v) {
+        CheckBox cb = (CheckBox)findViewById(R.id.completedCheckBox);
         boolean currentValue = cb.isChecked();
         cb.setChecked(!currentValue);
-
 
         CheckboxManager cbm = CheckboxManager.get(getApplication());
         cbm.setValue(!currentValue);
     }
-
-    public void onToggleB(View v) {
-        CheckBox cb = (CheckBox) findViewById(R.id.checkBox);
-        boolean currentValue = cb.isChecked();
-        cb.setChecked(!currentValue);
-
-
-        CheckboxManager cbm = CheckboxManager.get(getApplication());
-        cbm.setValue(!currentValue);
-    }
-
-
     @Override
     protected void onPause() {
         super.onPause();

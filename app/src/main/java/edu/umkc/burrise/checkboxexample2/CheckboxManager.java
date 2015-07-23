@@ -3,6 +3,7 @@ package edu.umkc.burrise.checkboxexample2;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,16 +41,26 @@ public class CheckboxManager implements Serializable {
                 checkboxMgr = new CheckboxManager();
                 checkboxMgr.context = context;
             } catch (ClassNotFoundException e) {
+                deletefile(context);
                 e.printStackTrace();
             } catch (OptionalDataException e) {
+                deletefile(context);
                 e.printStackTrace();
             } catch (StreamCorruptedException e) {
+                deletefile(context);
                 e.printStackTrace();
             } catch (IOException e) {
+                deletefile(context);
                 e.printStackTrace();
             }
         }
         return checkboxMgr;
+    }
+
+    private static void deletefile(Context context) {
+        File dir = context.getFilesDir();
+        File file = new File(dir, SAVE_FILE_NAME);
+        boolean deleted = file.delete();
     }
 
     private CheckboxManager() {
